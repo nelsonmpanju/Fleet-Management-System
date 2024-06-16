@@ -5,6 +5,8 @@ import router from './router'
 import App from './App.vue'
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
+import VueSidebarMenu from 'vue-sidebar-menu'
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
@@ -22,12 +24,8 @@ const vuetify = createVuetify({
 
 app.use(router)
 app.use(resourcesPlugin)
-
+app.use(vuetify)
 app.component('Button', Button)
+app.use(VueSidebarMenu)
 app.mount('#app')
 
-import '@mdi/font/css/materialdesignicons.css'
-import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'

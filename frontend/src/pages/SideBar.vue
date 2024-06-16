@@ -1,11 +1,10 @@
-
 <template>
   <VueAwesomeSideBar
-      v-model:miniMenu="miniMenu"
-      v-model:collapsed="collapsed"
-      :menu="testMenu"
-      vueRouterEnabel
-    ></VueAwesomeSideBar>
+    v-model:miniMenu="miniMenu"
+    v-model:collapsed="collapsed"
+    :menu="testMenu"
+    vueRouterEnabel
+  ></VueAwesomeSideBar>
 </template>
 
 <script setup>

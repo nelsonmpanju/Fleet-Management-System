@@ -1,8 +1,9 @@
 <template>
-  <h3>nelson</h3>
-
+  <div class="max-w-3xl py-12 mx-auto">
+    <Sidebar />
+  </div>
 </template>
 
-<script>
-
+<script setup>
+import Sidebar from './SideBar.vue'
 </script>
