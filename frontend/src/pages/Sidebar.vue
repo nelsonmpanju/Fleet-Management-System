@@ -45,5 +45,16 @@
 </template>
 
 <script setup>
-import map from './Map.vue'
 </script>
+
+<style scoped>
+.sidebar {
+  width: 64px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: white;
+  z-index: 2;
+}
+</style>

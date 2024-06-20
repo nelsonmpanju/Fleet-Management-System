@@ -1,16 +1,38 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+import Login from './pages/Login.vue';
+import Home from '@/pages/Home.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import('@/pages/Map.vue'),
+    redirect: '/login'
   },
-]
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home,
+    meta: { requiresAuth: true }
+  }
+];
 
-let router = createRouter({
+const router = createRouter({
   history: createWebHistory('/frontend'),
   routes,
-})
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  
+  if (to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn) {
+    next({ name: 'Login' });
+  } else {
+    next();
+  }
+});
+
+export default router;
