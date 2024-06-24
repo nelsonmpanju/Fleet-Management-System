@@ -1,75 +1,56 @@
 <template>
-  <div class="relative">
-    <login-modal v-if="isUserLoggedIn" />
-    <sidebar />
-    <div class="content" style="margin-left: 272px; margin-top:61px;"> <!-- Adjust margin to account for sidebar width -->
+  <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200" style="height: 56px;">
+    <div class="px-3 py-3 lg:px-5 lg:pl-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center justify-start rtl:justify-end">
+          <button aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+            <span class="sr-only">Open sidebar</span>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+          <a href="#" class="flex ms-2 md:me-24">
+            <img src="https://i.pinimg.com/originals/13/8b/9b/138b9b22dbc85be57c3898716fcdfd4c.jpg" class="h-11 me-2" alt="Logo">
+            <span class="self-center text-xl font-semibold whitespace-nowrap">Fleet Map</span>
+          </a>
+        </div>
+        <div class="flex items-center ms-3">
+          <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300">
+            <span class="sr-only">Open user menu</span>
+            <img class="w-8 h-8 rounded-full" src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png" alt="User photo">
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="flex" style="margin-top: 56px;"> 
+    <sidebar class="fixed left-0 w-64 h-full bg-white z-40"> 
+    </sidebar>
+    <div class="content flex-1" style="margin-left: 18.7%;"> 
       <div id="map" class="map-container"></div>
     </div>
-   
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import "leaflet/dist/leaflet.css";
+import 'leaflet/dist/leaflet.css';
 import * as L from 'leaflet';
-import sidebar from './Sidebar.vue';
-import loginModal from './Login.vue';
+import Sidebar from './Sidebar.vue';
 
-const initialMap = ref(null);
-const isUserLoggedIn = ref(false); // This should ideally be managed globally or via a store
+const map = ref(null);
 
 onMounted(() => {
-  console.log('Home component mounted');
-  
-  // Check if the map container exists
-  const mapContainer = document.getElementById('map');
-  if (!mapContainer) {
-    console.error('Map container not found');
-    return;
-  }
-
-  console.log('Map container found');
-  
-  initialMap.value = L.map('map').setView([23.8041, 90.4152], 6);
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19
-  }).addTo(initialMap.value);
-
-  // Check if the map instance is created successfully
-  if (!initialMap.value) {
-    console.error('Map initialization failed');
-  } else {
-    console.log('Map initialized successfully');
-  }
+    map.value = L.map('map').setView([23.8041, 90.4152], 6);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19
+    }).addTo(map.value);
 });
 </script>
 
 <style scoped>
 .map-container {
-  width: calc(100% - 5px); /* Adjust width to account for sidebar width */
-  height: 100vh;
-}
-
-.sidebar {
-  width: 64px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  z-index: 2;
-}
-
-.login-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 3;
+  width: 100%; 
+  height: calc(100vh - 56px); 
 }
 </style>
