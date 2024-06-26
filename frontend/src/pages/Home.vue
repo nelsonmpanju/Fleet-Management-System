@@ -24,27 +24,37 @@
     </div>
   </nav>
   <div class="flex" style="margin-top: 56px;"> 
-    <sidebar class="fixed left-0 w-64 h-full bg-white z-40"> 
+    <sidebar class="fixed left-0 w-70 h-full bg-white z-40"> 
     </sidebar>
-    <div class="content flex-1" style="margin-left: 18.7%;"> 
+    <div class="content flex-1" style="margin-left: 17%;"> 
       <div id="map" class="map-container"></div>
+      <LRoutingMachine :mapObject="mapObject" :waypoints="waypoints" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import LRoutingMachine from "./LRoutingMachine.vue";
 import 'leaflet/dist/leaflet.css';
 import * as L from 'leaflet';
 import Sidebar from './Sidebar.vue';
 
-const map = ref(null);
+const mapObject = ref(null);
+const waypoints = ref([
+  { lat: 50.7436056, lng: -9.2304153 },
+  { lat: 38.7436056, lng: -0.131281 },
+]);
+
+// const customLineOptions = {
+//   styles: [{ color: 'red', weight: 10 }] // Custom color and weight
+// };
 
 onMounted(() => {
-    map.value = L.map('map').setView([23.8041, 90.4152], 6);
+    mapObject.value = L.map('map').setView([38.7436056, -2.2304153], 6);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19
-    }).addTo(map.value);
+      maxZoom: 10
+    }).addTo(mapObject.value);
 });
 </script>
 
