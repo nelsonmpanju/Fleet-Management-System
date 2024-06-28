@@ -12,6 +12,7 @@
     "frappe-ui": "^0.1.54",
     "leaflet": "^1.9.4",
     "leaflet-routing-machine": "^3.2.12",
+    "pinia": "^2.1.7",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12"
   },

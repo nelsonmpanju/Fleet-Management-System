@@ -20,24 +20,25 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/store';
 
 const email = ref('');
 const password = ref('');
 const router = useRouter();
+const authStore = useAuthStore();
 
-const login = () => {
-  // Example login check
-  if (email.value === 'user@example.com' && password.value === 'password') {
-    localStorage.setItem('isLoggedIn', 'true');
+const login = async () => {
+  try {
+    await authStore.login(email.value, password.value);
     router.push('/home');
-  } else {
-    alert('Invalid credentials');
+  } catch (error) {
+    alert(error.message);
   }
 };
 </script>
 
-<style scoped>
+<!-- <style scoped>
 body {
   @apply bg-gray-100;
 }
-</style>
+</style> -->

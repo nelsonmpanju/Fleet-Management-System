@@ -1,9 +1,15 @@
-<script>
-import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
-import L from "leaflet";
-import { IRouter, IGeocoder, LineOptions } from "leaflet-routing-machine";
+<template>
+  <div>
+  </div>
+</template>
 
-const props = {
+<script setup>
+import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
+import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+import L from 'leaflet';
+import { IRouter, IGeocoder, LineOptions } from 'leaflet-routing-machine';
+
+const props = defineProps({
   mapObject: {
     type: Object,
   },
@@ -61,110 +67,95 @@ const props = {
   altLineOptions: {
     type: LineOptions,
   },
+});
+
+const ready = ref(false);
+const map = ref(null);
+const layer = ref(null);
+
+const add = () => {
+  if (!props.mapObject) return;
+
+  const {
+    waypoints,
+    fitSelectedRoutes,
+    autoRoute,
+    routeWhileDragging,
+    routeDragInterval,
+    waypointMode,
+    useZoomParameter,
+    showAlternatives,
+    lineOptions,
+    routeLine,
+  } = props;
+
+  const options = {
+    waypoints,
+    fitSelectedRoutes,
+    autoRoute,
+    routeWhileDragging,
+    routeDragInterval,
+    waypointMode,
+    useZoomParameter,
+    showAlternatives,
+  };
+
+  const routingLayer = L.Routing.control(options);
+  routingLayer.addTo(props.mapObject);
+  layer.value = routingLayer;
+  ready.value = true;
 };
 
-export default {
-  props,
-  name: "LRoutingMachine",
-  data() {
-    return {
-      ready: false,
-      map: null,
-      layer: null,
-    };
-  },
-  watch: {
-    mapObject() {
-      if (this.mapObject == null) {
-        return;
-      }
-      this.add();
-    },
-  },
-  mounted() {
-    this.add();
-  },
-  beforeUnmount() {
-    return this.layer ? this.layer.remove() : null;
-  },
-  methods: {
-    add() {
-      if (this.mapObject == null) {
-        return;
-      }
-
-      const {
-        waypoints,
-        fitSelectedRoutes,
-        autoRoute,
-        routeWhileDragging,
-        routeDragInterval,
-        waypointMode,
-        useZoomParameter,
-        showAlternatives,
-        lineOptions, // include lineOptions from props
-        routeLine, // include routeLine from props
-      } = this;
-
-      const options = {
-        waypoints,
-        fitSelectedRoutes,
-        autoRoute,
-        routeWhileDragging,
-        routeDragInterval,
-        waypointMode,
-        useZoomParameter,
-        showAlternatives,
-        // draggableWaypoints: false, // Disable moving points
-        // lineOptions: lineOptions || {},
-        // routeLine: routeLine || this.customRouteLine, // Default to customRouteLine if not provided
-        // createMarker: this.customMarker, // Custom marker function
-        // summaryTemplate: this.customSummaryTemplate, // Custom summary template function
-        // instructionsTemplate: this.customInstructionsTemplate, // Custom instructions template function
-      };
-
-      const routingLayer = L.Routing.control(options);
-      routingLayer.addTo(this.mapObject);
-      this.layer = routingLayer;
-
-      this.ready = true;
-    },
-    customRouteLine(route, options) {
-      const half = Math.ceil(route.coordinates.length / 2);
-      const part1 = L.polyline(route.coordinates.slice(0, half), { color: 'blue', weight: 4 });
-      const part2 = L.polyline(route.coordinates.slice(half), { color: 'red', weight: 4 });
-      return L.layerGroup([part1, part2]);
-    },
-    customMarker(i, wp, nWps) {
-      // Custom marker example
-      return L.marker(wp.latLng, {
-        draggable: true,
-        icon: L.icon({
-          iconUrl: 'https://static.vecteezy.com/system/resources/previews/000/643/001/original/map-pointer-car-truck-icon-vector.jpg',
-          iconSize: [50, 50],
-          iconAnchor: [12, 41],
-          popupAnchor: [1, -34],
-          shadowSize: [41, 41]
-        })
-      }).bindPopup(`Waypoint ${i + 1}`);
-    },
-    customSummaryTemplate(summary) {
-      return `<div class="custom-summary">
-                <h3>Route Summary</h3>
-                <p>Total distance: ${summary.totalDistance} km</p>
-                <p>Estimated time: ${summary.totalTime}</p>
-              </div>`;
-    },
-    customInstructionsTemplate(instructions) {
-      let html = '<ol class="custom-instructions">';
-      instructions.forEach(instruction => {
-        html += `<li>${instruction.text} (${instruction.distance} m)</li>`;
-      });
-      html += '</ol>';
-      return html;
-    },
-  },
+const customRouteLine = (route, options) => {
+  const half = Math.ceil(route.coordinates.length / 2);
+  const part1 = L.polyline(route.coordinates.slice(0, half), { color: 'blue', weight: 4 });
+  const part2 = L.polyline(route.coordinates.slice(half), { color: 'red', weight: 4 });
+  return L.layerGroup([part1, part2]);
 };
+
+const customMarker = (i, wp, nWps) => {
+  return L.marker(wp.latLng, {
+    draggable: true,
+    icon: L.icon({
+      iconUrl: 'https://static.vecteezy.com/system/resources/previews/000/643/001/original/map-pointer-car-truck-icon-vector.jpg',
+      iconSize: [50, 50],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    })
+  }).bindPopup(`Waypoint ${i + 1}`);
+};
+
+const customSummaryTemplate = (summary) => {
+  return `<div class="custom-summary">
+            <h3>Route Summary</h3>
+            <p>Total distance: ${summary.totalDistance} km</p>
+            <p>Estimated time: ${summary.totalTime}</p>
+          </div>`;
+};
+
+const customInstructionsTemplate = (instructions) => {
+  let html = '<ol class="custom-instructions">';
+  instructions.forEach(instruction => {
+    html += `<li>${instruction.text} (${instruction.distance} m)</li>`;
+  });
+  html += '</ol>';
+  return html;
+};
+
+watch(() => props.mapObject, (newValue) => {
+  if (newValue) add();
+});
+
+onMounted(() => {
+  add();
+});
+
+onBeforeUnmount(() => {
+  if (layer.value) {
+    layer.value.remove();
+  }
+});
 </script>
 
 <style scoped>
