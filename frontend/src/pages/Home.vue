@@ -3,7 +3,7 @@
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
       <div class="flex items-center justify-between">
         <div class="flex items-center justify-start rtl:justify-end">
-          <button aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+          <button @click="toggleSidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
             <span class="sr-only">Open sidebar</span>
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
@@ -23,11 +23,10 @@
       </div>
     </div>
   </nav>
-  <div class="flex" style="margin-top: 56px;"> 
-    <sidebar class="fixed left-0 w-70 h-full bg-white z-40"> 
-    </sidebar>
-    <div class="content flex-1" style="margin-left: 17%;"> 
-      <div id="map" class="map-container"></div>
+  <div class="flex" style="margin-top: 56px;">
+    <Sidebar v-if="sidebarStore.isOpen" class="sidebar bg-white z-40"/>
+    <div class="map-container">
+      <div id="map" class="map"></div>
       <LRoutingMachine :mapObject="mapObject" :waypoints="waypoints" />
     </div>
   </div>
@@ -39,6 +38,9 @@ import LRoutingMachine from "./LRoutingMachine.vue";
 import 'leaflet/dist/leaflet.css';
 import * as L from 'leaflet';
 import Sidebar from './Sidebar.vue';
+import { useSidebarStore } from '@/store';
+
+const sidebarStore = useSidebarStore();
 
 const mapObject = ref(null);
 const waypoints = ref([
@@ -46,21 +48,43 @@ const waypoints = ref([
   { lat: 38.7436056, lng: -0.131281 },
 ]);
 
-// const customLineOptions = {
-//   styles: [{ color: 'red', weight: 10 }] // Custom color and weight
-// };
+const toggleSidebar = () => {
+  sidebarStore.toggleSidebar();
+};
 
 onMounted(() => {
-    mapObject.value = L.map('map').setView([38.7436056, -2.2304153], 6);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 10
-    }).addTo(mapObject.value);
+  mapObject.value = L.map('map').setView([38.7436056, -2.2304153], 6);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
+  }).addTo(mapObject.value);
 });
 </script>
 
 <style scoped>
+.sidebar {
+  width: 330px;
+}
 .map-container {
-  width: 100%; 
-  height: calc(100vh - 56px); 
+  display: flex;
+  flex: 1;
+}
+</style>
+<style scoped>
+.sidebar {
+  width: 330px;
+}
+.flex {
+  display: flex;
+}
+.map-container {
+  flex-grow: 1;
+  position: sticky;
+}
+.map {
+  width: 100%;
+  height: calc(100vh - 56px);
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }
 </style>
