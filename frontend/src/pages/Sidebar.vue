@@ -12,7 +12,7 @@
           </svg>
         </Button>
         <!-- Messages button -->
-        <Button @click="fetchDocTypes('Truck')" 
+        <Button @click="handleFetchDocTypes('Truck')" 
                 class="p-3 w-full transition-colors duration-300 rounded-lg shadow-md hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-2"
                 :class="sidebarStore.isOpen && sidebarStore.currentTab == 'messagesTab' ? 'text-white bg-indigo-900' : 'text-gray-500 bg-gray-100'">
           <svg aria-hidden="true" class="w-6 h-6 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -71,12 +71,19 @@
         </form>
         <!-- Navigation Menu -->
         <ul class="space-y-2 font-medium overflow-y-auto">
-          <li v-for="item in filteredItems" :key="item">
+          <li v-for="item in filteredItems" :key="item.name" class="flex items-center justify-between">
             <a class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
-              <span class="ms-3">{{ item }}</span>
+              <span class="ms-3">{{ item.name }}</span>
+              <Badge :variant="'solid'" :theme="gray" size="sm" label="Badge">
+                {{ item.status }}
+              </Badge>
             </a>
+              <Badge  size="l" label="Badge">
+                {{ item.status }}
+              </Badge>
           </li>
         </ul>
+
       </div>
     </aside>
   </div>
@@ -84,8 +91,9 @@
 
 <script setup>
 import { computed } from 'vue';
-import { Button, createListResource } from 'frappe-ui';
+import { Badge, Button } from 'frappe-ui';
 import { useSidebarStore } from '@/store';
+import { fetchDocTypes } from '@/utils';
 
 const sidebarStore = useSidebarStore();
 
@@ -98,38 +106,27 @@ const toggleSidebar = (tab) => {
   }
 };
 
-const fetchDocTypes = (doc) => {
-  const docTypesResource = createListResource({
-    doctype: doc,
-    fields: ['name', 'status'],
-    orderBy: 'creation desc',
-    start: 0,
-    pageLength: 100,
-  });
-
-  // Fetch the data
-  docTypesResource.list.fetch().then(() => {
-    if (docTypesResource.data && docTypesResource.data.length > 0) {
-      const docTypes = docTypesResource.data.map((truck) => truck.name);
-      sidebarStore.setDocTypes(docTypes);
-    } else {
-      console.error("Failed to fetch data or no data available");
-    }
-  }).catch((error) => {
-    console.error("Error fetching doc types:", error);
-  }).finally(() => {
-    toggleSidebar('messagesTab'); // Ensure the main sidebar is open and switched to the messages tab
-  });
+const handleFetchDocTypes = async (doc) => {
+  await fetchDocTypes(doc, sidebarStore);
+  toggleSidebar('messagesTab'); // Ensure the main sidebar is open and switched to the messages tab
 };
 
 const filteredItems = computed(() => {
   return sidebarStore.docTypes.filter((item) =>
-    item.toLowerCase().includes(sidebarStore.searchQuery.toLowerCase())
+    item.name.toLowerCase().includes(sidebarStore.searchQuery.toLowerCase())
   );
 });
 
 const search = () => {
   console.log('Search query:', sidebarStore.searchQuery);
+};
+
+const colorMap = {
+  Draft: 'gray',
+  Pending: 'yellow',
+  Completed: 'green',
+  Error: 'red',
+  'In Progress': 'blue',
 };
 </script>
 

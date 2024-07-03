@@ -9,8 +9,8 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    name: 'Login',
     path: '/login',
+    name: 'Login',
     component: () => import('@/pages/Login.vue'),
   }
 ];
