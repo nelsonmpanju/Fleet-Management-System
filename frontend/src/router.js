@@ -1,22 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from './pages/Login.vue';
-import Home from '@/pages/Home.vue';
+import { session, userResource } from '@/store';
 
 const routes = [
   {
     path: '/',
-    redirect: '/login'
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: Login
-  },
-  {
-    path: '/home',
     name: 'Home',
-    component: Home,
+    component: () => import('@/pages/Home.vue'),
     meta: { requiresAuth: true }
+  },
+  {
+    name: 'Login',
+    path: '/login',
+    component: () => import('@/pages/Login.vue'),
   }
 ];
 
@@ -25,10 +20,18 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-  
-  if (to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn) {
+router.beforeEach(async (to, from, next) => {
+  let isLoggedIn = session.isLoggedIn;
+
+  try {
+    await userResource.promise;
+  } catch (error) {
+    isLoggedIn = false;
+  }
+
+  if (to.name === 'Login' && isLoggedIn) {
+    next({ name: 'Home' });
+  } else if (to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn) {
     next({ name: 'Login' });
   } else {
     next();

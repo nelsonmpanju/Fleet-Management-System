@@ -1,0 +1,18 @@
+{   "workspaces": [ "frontend"],
+    "private": true,
+  "scripts": {
+    "postinstall": "cd frontend && yarn install",
+    "dev": "cd frontend && yarn dev",
+    "build": "cd frontend && yarn build"
+  },
+  "dependencies": {
+    "feather-icons": "^4.28.0",
+    "frappe-ui": "^0.1.54",
+    "leaflet": "^1.9.4",
+    "leaflet-routing-machine": "^3.2.12",
+    "pinia": "^2.1.7",
+    "vue": "^3.2.25",
+    "vue-feather-icons": "^5.1.0",
+    "vue-router": "^4.0.12"
+  }
+}

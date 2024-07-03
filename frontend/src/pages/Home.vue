@@ -23,13 +23,11 @@
       </div>
     </div>
   </nav>
-  <div class="flex" style="margin-top: 56px;">
-    <Sidebar v-if="sidebarStore.isOpen" class="sidebar bg-white z-40"/>
+  <Sidebar />
     <div class="map-container">
       <div id="map" class="map"></div>
       <LRoutingMachine :mapObject="mapObject" :waypoints="waypoints" />
     </div>
-  </div>
 </template>
 
 <script setup>
@@ -62,16 +60,7 @@ onMounted(() => {
 
 <style scoped>
 .sidebar {
-  width: 330px;
-}
-.map-container {
-  display: flex;
-  flex: 1;
-}
-</style>
-<style scoped>
-.sidebar {
-  width: 330px;
+  width: 450px;
 }
 .flex {
   display: flex;
