@@ -1,9 +1,6 @@
 # VSD Fleet Management System
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![ERPNext](https://img.shields.io/badge/ERPNext-v15+-green.svg)](https://erpnext.com/)
-[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
-[![Frappe](https://img.shields.io/badge/Frappe-Framework-orange.svg)](https://frappeframework.com/)
+![Fleet Management](assets/truck.svg){ width="80" }
 
 > **Enterprise-Grade Fleet Management Powered by ERPNext**
 
@@ -13,7 +10,15 @@ A comprehensive, open-source fleet management solution built on the Frappe frame
 
 ---
 
-## 🚀 Key Features
+## 📸 System Overview
+
+![VSD Fleet Management System Workspace](assets/workspace.png){ width="100%" }
+
+*The VSD Fleet Management System provides a comprehensive workspace for managing all aspects of fleet operations, from cargo registration to trip completion and financial settlement.*
+
+---
+
+## 🚀 Why Choose VSD Fleet MS?
 
 ### **Complete Fleet Lifecycle Management**
 - **Cargo Registration** → **Vehicle Assignment** → **Trip Execution** → **Financial Settlement**
@@ -91,38 +96,41 @@ graph TB
 
 ## 🚀 Quick Start
 
-### **Prerequisites**
-- ERPNext v15+ installed and running
-- Python 3.10+
-- Frappe Bench
+### **1. Installation**
+```bash
+# Install on existing ERPNext system
+bench get-app https://github.com/nelsonmpanju/Fleet-Management-System.git
+bench --site [your-site] install-app vsd_fleet_ms
+```
 
-### **Installation**
+### **2. Configuration**
+- Set up Transport Settings with fuel items and warehouses
+- Configure accounting dimensions for financial tracking
+- Define master data (trucks, drivers, routes, expenses)
 
-1. **Install the App**
-   ```bash
-   bench get-app https://github.com/nelsonmpanju/Fleet-Management-System.git
-   bench --site [your-site] install-app vsd_fleet_ms
-   ```
+### **3. First Trip**
+- Register customer cargo with service details
+- Create manifest and assign vehicles
+- Generate trip with automatic expense allocation
+- Execute trip with real-time tracking
 
-2. **Configure Transport Settings**
-   - Set up fuel items and warehouses
-   - Configure accounting dimensions
-   - Define expense account groups
+---
 
-3. **Create Master Data**
-   - Add trucks and trailers
-   - Register drivers
-   - Define routes and fixed expenses
+## 📚 Documentation
 
-4. **Start Your First Trip**
-   - Register customer cargo
-   - Create manifest and assign vehicles
-   - Generate trip with automatic expense allocation
+### **Getting Started**
+- **[Complete Workflow Guide](user-guide/complete-workflow.md)** - End-to-end process documentation
+- **[Installation Guide](installation.md)** - System setup and configuration
 
-### **Documentation**
-- **[Complete Workflow Guide](https://vsd-fleet-ms.readthedocs.io/en/latest/user-guide/complete-workflow.html)** - End-to-end process documentation
-- **[API Reference](https://vsd-fleet-ms.readthedocs.io/en/latest/api/doctype-reference.html)** - Complete technical documentation
-- **[Installation Guide](https://vsd-fleet-ms.readthedocs.io/en/latest/installation.html)** - Detailed setup instructions
+### **Core Operations**
+- **[Cargo Registration](transactions/cargo-registration.md)** - Customer service management
+- **[Manifest Management](transactions/manifest-management.md)** - Vehicle assignment workflow
+- **[Trip Management](transactions/trip-management.md)** - Transportation execution
+- **[Financial Workflows](transactions/financial-workflows.md)** - Fund and fuel management
+
+### **Technical Reference**
+- **[API Reference](api/doctype-reference.md)** - Complete doctype specifications
+- **[Setup Guides](setup/)** - Master data and system configuration
 
 ---
 
@@ -156,25 +164,6 @@ Unlike standalone fleet management systems, VSD Fleet MS is built natively on ER
 
 ---
 
-## 📈 Business Benefits
-
-### **Operational Efficiency**
-- **Reduced Manual Work** - Automated workflows and calculations
-- **Faster Processing** - Streamlined approval and execution processes
-- **Better Resource Utilization** - Optimized vehicle and driver assignment
-
-### **Financial Control**
-- **Cost Transparency** - Detailed expense tracking and analysis
-- **Approval Workflows** - Controlled spending with multi-level approvals
-- **Real-time Reporting** - Instant visibility into fleet performance
-
-### **Compliance & Risk Management**
-- **Audit Trail** - Complete transaction history for compliance
-- **Document Management** - Centralized storage of all fleet documents
-- **Exception Handling** - Proper management of breakdowns and delays
-
----
-
 ## 🤝 Contributing
 
 We welcome contributions from the community! Whether you're a developer, business analyst, or fleet management expert, there are many ways to contribute:
@@ -197,32 +186,6 @@ We welcome contributions from the community! Whether you're a developer, busines
 3. **Develop** your changes following our guidelines
 4. **Test** thoroughly on a development environment
 5. **Submit** a pull request with detailed description
-
-For detailed contribution guidelines, see our **[Contributing Guide](https://vsd-fleet-ms.readthedocs.io/en/latest/CONTRIBUTING.html)**.
-
----
-
-## 🐛 Known Issues & Contribution Opportunities
-
-### **DocType Naming Convention**
-Many doctypes are in plural format (e.g., `trips`, `trucks`, `drivers`) due to conflicts with existing ERPNext core doctypes during local customization. This is a known issue that provides an excellent first contribution opportunity:
-
-**Existing ERPNext Doctypes that Caused Conflicts:**
-- `trip`, `truck`, `driver`, `trailer`, `route`, `location`, `fuel`, `expense`, `payment`, `request`
-
-**Solution Applied:**
-- `trip` → `trips`, `truck` → `trucks`, `driver` → `drivers`, etc.
-
-- **Issue**: Plural doctype names for consistency
-- **Impact**: Minor - affects naming convention only
-- **Difficulty**: Easy - suitable for new contributors
-- **Files to modify**: DocType JSON files and related references
-
-### **Other Contribution Areas**
-- **Performance Optimization** - Improve query efficiency
-- **UI/UX Enhancements** - Better user experience
-- **Additional Reports** - New analytics and insights
-- **Integration Features** - Third-party system connections
 
 ---
 
@@ -247,7 +210,7 @@ Many doctypes are in plural format (e.g., `trips`, `trucks`, `drivers`) due to c
 
 ## 📄 License
 
-This project is licensed under the **GNU General Public License v3.0** - see the [LICENSE](license.txt) file for details.
+This project is licensed under the **GNU General Public License v3.0** - see the [LICENSE](../license.txt) file for details.
 
 ---
 
@@ -265,22 +228,11 @@ This project is licensed under the **GNU General Public License v3.0** - see the
 
 ---
 
-## 🏆 Recognition
-
-VSD Fleet Management System is designed to help organizations worldwide transform their fleet operations through:
-
-- **Open Source Excellence** - Community-driven development and innovation
-- **Enterprise Standards** - Professional-grade features and reliability
-- **Global Accessibility** - Multi-currency and multi-language support
-- **Industry Expertise** - Built with deep understanding of transportation needs
-
----
-
 <div align="center">
 
 **Ready to transform your fleet operations?**
 
-[🚀 Get Started](https://vsd-fleet-ms.readthedocs.io/en/latest/user-guide/complete-workflow.html) • [📖 Documentation](https://vsd-fleet-ms.readthedocs.io/) • [🤝 Contribute](https://github.com/nelsonmpanju/Fleet-Management-System)
+[🚀 Get Started](user-guide/complete-workflow.md) • [📖 View Documentation](api/doctype-reference.md) • [🤝 Contribute](https://github.com/nelsonmpanju/Fleet-Management-System)
 
 **Forked from [VVSD-LTD/vsd_fleet_ms](https://github.com/VVSD-LTD/vsd_fleet_ms) with enhanced documentation and features**
 

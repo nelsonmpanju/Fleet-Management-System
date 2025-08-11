@@ -1,0 +1,152 @@
+site_name: "VSD Fleet Management System"
+site_description: "Enterprise-Grade Fleet Management Powered by ERPNext - A comprehensive, open-source fleet management solution built on the Frappe framework"
+site_author: "VSD Team"
+site_url: ""
+
+# Repository configuration like Material for MkDocs official site
+repo_url: https://github.com/nelsonmpanju/Fleet-Management-System
+repo_name: nelsonmpanju/Fleet-Management-System
+edit_uri: edit/master/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
+    - navigation.instant
+    - navigation.footer
+    - navigation.path
+    - toc.follow
+    - search.highlight
+    - search.share
+    - search.suggest
+    - header.autohide
+    - announce.dismiss
+    - content.code.copy
+    - content.code.annotate
+    - content.tooltips
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: JetBrains Mono
+  favicon: assets/logo.svg
+  icon:
+    logo: material/car-connected
+    repo: fontawesome/brands/github
+  language: en
+
+nav:
+  - Home: index.md
+  - Getting started:
+    - Installation: installation.md
+    - Quick start: user-guide/complete-workflow.md
+    - Configuration: setup/configuration.md
+  - User Guide:
+    - Complete Workflow: user-guide/complete-workflow.md
+    - Master Data Setup: setup/master.md
+  - Core Operations:
+    - Cargo Registration: transactions/cargo-registration.md
+    - Manifest Management: transactions/manifest-management.md
+    - Trip Management: transactions/trip-management.md
+    - Financial Workflows: transactions/financial-workflows.md
+  - Reference:
+    - DocType Reference: api/doctype-reference.md
+    - API Documentation: api/doctype-reference.md
+  - Contributing:
+    - Overview: CONTRIBUTING.md
+    - Reporting Issues: CONTRIBUTING.md#reporting-bugs
+    - Making Changes: CONTRIBUTING.md#development
+    - Documentation: CONTRIBUTING.md#documentation
+    - Community: CONTRIBUTING.md#community
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      title: On this page
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: nelsonmpanju
+      repo: Fleet-Management-System
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+  - minify:
+      minify_html: true
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - social
+
+extra:
+  analytics:
+    provider: google
+    property: !ENV GOOGLE_ANALYTICS_KEY
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/nelsonmpanju/Fleet-Management-System
+  generator: false
+  status:
+    new: Recently added
+    deprecated: Deprecated
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js

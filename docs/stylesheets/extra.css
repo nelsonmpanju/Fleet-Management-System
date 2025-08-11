@@ -1,0 +1,203 @@
+/* Material for MkDocs - Denim Blue Theme */
+
+/* Color scheme override */
+:root,
+[data-md-color-scheme="default"],
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #1e3a8a;          /* denim */
+  --md-primary-fg-color--light: #3b82f6;   /* blue-500 */
+  --md-primary-fg-color--dark: #172554;    /* dark denim */
+  --md-accent-fg-color: #2563eb;           /* blue-600 */
+}
+
+/* Header styling */
+.md-header {
+  background-color: var(--md-primary-fg-color);
+}
+
+.md-tabs {
+  background-color: var(--md-primary-fg-color);
+}
+
+/* Footer styling - match header */
+.md-footer {
+  background-color: var(--md-primary-fg-color);
+  border-top: none;
+}
+
+.md-footer__title {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.md-footer__link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.md-footer__link:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.md-footer-copyright {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Bottom navigation styling - match header */
+.md-footer-nav {
+  background-color: var(--md-primary-fg-color);
+}
+
+.md-footer-nav__title {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.md-footer-nav__link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.md-footer-nav__link:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Repository info styling */
+.md-header__source {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.md-header__source a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.md-header__source a:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Navigation styling */
+.md-nav__link--active,
+.md-nav__link:focus {
+  color: var(--md-primary-fg-color);
+}
+
+.md-nav__link:hover {
+  color: var(--md-primary-fg-color--light);
+}
+
+/* Link styling */
+.md-typeset a {
+  color: var(--md-accent-fg-color);
+}
+
+.md-typeset a:hover {
+  color: var(--md-primary-fg-color--light);
+  text-decoration: underline;
+}
+
+/* Tab styling */
+.md-tabs__link {
+  font-weight: 500;
+}
+
+.md-tabs__link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.md-tabs__link--active {
+  background-color: rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+}
+
+/* Search styling */
+.md-search__input {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.md-search__input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.md-search__input:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced typography */
+.md-typeset h1 {
+  font-weight: 300;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset h2 {
+  font-weight: 400;
+  color: var(--md-default-fg-color);
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  padding-bottom: 0.5rem;
+}
+
+.md-typeset h3 {
+  font-weight: 400;
+  color: var(--md-default-fg-color);
+}
+
+/* Code blocks */
+.md-typeset code {
+  background-color: var(--md-code-bg-color);
+  color: var(--md-code-fg-color);
+  border: 1px solid var(--md-code-hl-border-color);
+}
+
+.md-typeset pre {
+  border: 1px solid var(--md-code-hl-border-color);
+}
+
+/* Tables */
+.md-typeset table {
+  border: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset table th {
+  background-color: var(--md-primary-fg-color--lightest);
+  font-weight: 600;
+}
+
+/* Admonitions */
+.md-typeset .admonition {
+  border-left: 4px solid var(--md-admonition-icon-color);
+}
+
+/* Buttons */
+.md-button {
+  border-radius: 0.4rem;
+  font-weight: 500;
+}
+
+.md-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+/* Breadcrumbs */
+.md-breadcrumb__link {
+  color: var(--md-accent-fg-color);
+}
+
+.md-breadcrumb__link:hover {
+  color: var(--md-primary-fg-color--light);
+}
+
+/* Blockquotes */
+.md-typeset blockquote {
+  border-left: 4px solid var(--md-primary-fg-color);
+  background-color: var(--md-primary-fg-color--lightest);
+}
+
+/* Horizontal rules */
+.md-typeset hr {
+  border-top: 2px solid var(--md-default-fg-color--lightest);
+}
