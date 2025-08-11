@@ -13,7 +13,7 @@ A comprehensive, open-source fleet management solution built on the Frappe frame
 
 ---
 
-## 🚀 Key Features
+## 🚀 Why Choose VSD Fleet MS?
 
 ### **Complete Fleet Lifecycle Management**
 - **Cargo Registration** → **Vehicle Assignment** → **Trip Execution** → **Financial Settlement**
@@ -91,38 +91,42 @@ graph TB
 
 ## 🚀 Quick Start
 
-### **Prerequisites**
-- ERPNext v15+ installed and running
-- Python 3.10+
-- Frappe Bench
+### **1. Installation**
+```bash
+# Install on existing ERPNext system
+bench get-app https://github.com/nelsonmpanju/Fleet-Management-System.git
+bench --site [your-site] install-app vsd_fleet_ms
+```
 
-### **Installation**
+### **2. Configuration**
+- Set up Transport Settings with fuel items and warehouses
+- Configure accounting dimensions for financial tracking
+- Define master data (trucks, drivers, routes, expenses)
 
-1. **Install the App**
-   ```bash
-   bench get-app https://github.com/nelsonmpanju/Fleet-Management-System.git
-   bench --site [your-site] install-app vsd_fleet_ms
-   ```
+### **3. First Trip**
+- Register customer cargo with service details
+- Create manifest and assign vehicles
+- Generate trip with automatic expense allocation
+- Execute trip with real-time tracking
 
-2. **Configure Transport Settings**
-   - Set up fuel items and warehouses
-   - Configure accounting dimensions
-   - Define expense account groups
+---
 
-3. **Create Master Data**
-   - Add trucks and trailers
-   - Register drivers
-   - Define routes and fixed expenses
+## 📚 Documentation
 
-4. **Start Your First Trip**
-   - Register customer cargo
-   - Create manifest and assign vehicles
-   - Generate trip with automatic expense allocation
+### **Getting Started**
+- **[Complete Workflow Guide](https://nelsonmpanju.github.io/Fleet-Management-System/user-guide/complete-workflow/)** - End-to-end process documentation
+- **[API Reference](https://nelsonmpanju.github.io/Fleet-Management-System/api/doctype-reference/)** - Complete technical documentation
+- **[Installation Guide](https://nelsonmpanju.github.io/Fleet-Management-System/installation/)** - Detailed setup instructions
 
-### **Documentation**
-- **[Complete Workflow Guide](https://vsd-fleet-ms.readthedocs.io/en/latest/user-guide/complete-workflow.html)** - End-to-end process documentation
-- **[API Reference](https://vsd-fleet-ms.readthedocs.io/en/latest/api/doctype-reference.html)** - Complete technical documentation
-- **[Installation Guide](https://vsd-fleet-ms.readthedocs.io/en/latest/installation.html)** - Detailed setup instructions
+### **Core Operations**
+- **[Cargo Registration](https://nelsonmpanju.github.io/Fleet-Management-System/transactions/cargo-registration/)** - Customer service management
+- **[Manifest Management](https://nelsonmpanju.github.io/Fleet-Management-System/transactions/manifest-management/)** - Vehicle assignment workflow
+- **[Trip Management](https://nelsonmpanju.github.io/Fleet-Management-System/transactions/trip-management/)** - Transportation execution
+- **[Financial Workflows](https://nelsonmpanju.github.io/Fleet-Management-System/transactions/financial-workflows/)** - Fund and fuel management
+
+### **Technical Reference**
+- **[API Reference](https://nelsonmpanju.github.io/Fleet-Management-System/api/doctype-reference/)** - Complete doctype specifications
+- **[Setup Guides](https://nelsonmpanju.github.io/Fleet-Management-System/setup/)** - Master data and system configuration
 
 ---
 
@@ -198,31 +202,7 @@ We welcome contributions from the community! Whether you're a developer, busines
 4. **Test** thoroughly on a development environment
 5. **Submit** a pull request with detailed description
 
-For detailed contribution guidelines, see our **[Contributing Guide](https://vsd-fleet-ms.readthedocs.io/en/latest/CONTRIBUTING.html)**.
-
----
-
-## 🐛 Known Issues & Contribution Opportunities
-
-### **DocType Naming Convention**
-Many doctypes are in plural format (e.g., `trips`, `trucks`, `drivers`) due to conflicts with existing ERPNext core doctypes during local customization. This is a known issue that provides an excellent first contribution opportunity:
-
-**Existing ERPNext Doctypes that Caused Conflicts:**
-- `trip`, `truck`, `driver`, `trailer`, `route`, `location`, `fuel`, `expense`, `payment`, `request`
-
-**Solution Applied:**
-- `trip` → `trips`, `truck` → `trucks`, `driver` → `drivers`, etc.
-
-- **Issue**: Plural doctype names for consistency
-- **Impact**: Minor - affects naming convention only
-- **Difficulty**: Easy - suitable for new contributors
-- **Files to modify**: DocType JSON files and related references
-
-### **Other Contribution Areas**
-- **Performance Optimization** - Improve query efficiency
-- **UI/UX Enhancements** - Better user experience
-- **Additional Reports** - New analytics and insights
-- **Integration Features** - Third-party system connections
+For detailed contribution guidelines, see our **[Contributing Guide](https://nelsonmpanju.github.io/Fleet-Management-System/contributing/)**.
 
 ---
 
@@ -247,7 +227,7 @@ Many doctypes are in plural format (e.g., `trips`, `trucks`, `drivers`) due to c
 
 ## 📄 License
 
-This project is licensed under the **GNU General Public License v3.0** - see the [LICENSE](license.txt) file for details.
+This project is licensed under the **GNU General Public License v3.0** - see the [LICENSE](../license.txt) file for details.
 
 ---
 
@@ -265,22 +245,11 @@ This project is licensed under the **GNU General Public License v3.0** - see the
 
 ---
 
-## 🏆 Recognition
-
-VSD Fleet Management System is designed to help organizations worldwide transform their fleet operations through:
-
-- **Open Source Excellence** - Community-driven development and innovation
-- **Enterprise Standards** - Professional-grade features and reliability
-- **Global Accessibility** - Multi-currency and multi-language support
-- **Industry Expertise** - Built with deep understanding of transportation needs
-
----
-
 <div align="center">
 
 **Ready to transform your fleet operations?**
 
-[🚀 Get Started](https://vsd-fleet-ms.readthedocs.io/en/latest/user-guide/complete-workflow.html) • [📖 Documentation](https://vsd-fleet-ms.readthedocs.io/) • [🤝 Contribute](https://github.com/nelsonmpanju/Fleet-Management-System)
+[🚀 Get Started](https://nelsonmpanju.github.io/Fleet-Management-System/user-guide/complete-workflow/) • [📖 Documentation](https://nelsonmpanju.github.io/Fleet-Management-System/) • [🤝 Contribute](https://github.com/nelsonmpanju/Fleet-Management-System)
 
 **Forked from [VVSD-LTD/vsd_fleet_ms](https://github.com/VVSD-LTD/vsd_fleet_ms) with enhanced documentation and features**
 
