@@ -46,8 +46,34 @@ class Trips(Document):
     def validate(self):
         if self.transporter_type == "In House":
             self.validate_fuel_requests()
-        
+
         # self.set_permits()
+
+    def on_update(self):
+        """Update Round Trip when trip is modified"""
+        if self.round_trip and not self.flags.ignore_round_trip_update:
+            self.update_round_trip()
+
+    def update_round_trip(self):
+        """Update Round Trip child table with latest trip data"""
+        try:
+            round_trip = frappe.get_doc("Round Trip", self.round_trip)
+            # Find this trip in the round trip's trip_details
+            for trip_row in round_trip.trip_details:
+                if trip_row.trip_id == self.name:
+                    trip_row.trip_driver = self.driver_name
+                    trip_row.trip_start_date = self.date
+                    trip_row.trip_end_date = self.trip_completed_date
+                    break
+
+            # Update Round Trip status based on all trips
+            round_trip.update_status()
+
+            # Save without triggering recursive updates
+            round_trip.flags.ignore_round_trip_update = True
+            round_trip.save()
+        except Exception as e:
+            frappe.log_error(f"Error updating Round Trip {self.round_trip}: {str(e)}")
 
     def set_fuel_stock(self):
         self.fuel_stock_out = self.total_fuel
