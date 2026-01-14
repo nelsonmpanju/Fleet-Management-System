@@ -4,10 +4,20 @@
 [![ERPNext](https://img.shields.io/badge/ERPNext-v15+-green.svg)](https://erpnext.com/)
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
 [![Frappe](https://img.shields.io/badge/Frappe-Framework-orange.svg)](https://frappeframework.com/)
+[![Documentation](https://img.shields.io/badge/Docs-iota.co.tz-blue.svg)](https://iota.co.tz/docs/)
 
 > **Enterprise-Grade Fleet Management Powered by ERPNext**
 
 A comprehensive, open-source fleet management solution built on the Frappe framework, designed for transportation companies, logistics providers, and organizations managing vehicle fleets. Streamline operations from cargo registration to trip completion with integrated financial management and real-time tracking.
+
+## 📖 Documentation
+
+**Complete documentation is available at: [https://iota.co.tz/docs/](https://iota.co.tz/docs/)**
+
+Quick Links:
+- [User Guide](https://iota.co.tz/docs/) - Complete workflow and feature documentation
+- [Installation Guide](https://iota.co.tz/docs/) - Setup instructions
+- [API Reference](https://iota.co.tz/docs/) - Technical documentation
 
 **📝 Note**: This is a community fork of the original [VVSD-LTD/vsd_fleet_ms](https://github.com/VVSD-LTD/vsd_fleet_ms) project, enhanced with comprehensive documentation and additional features based on real customer needs. The original project was built by VVSD-LTD after studying SAP's fleet management solutions, making it one of the most sophisticated fleet management applications in the ERPNext ecosystem.
 
@@ -114,19 +124,23 @@ bench --site [your-site] install-app vsd_fleet_ms
 ## 📚 Documentation
 
 ### **Getting Started**
-- **[Complete Workflow Guide](https://nelsonmpanju.github.io/Fleet-Management-System/user-guide/complete-workflow/)** - End-to-end process documentation
-- **[API Reference](https://nelsonmpanju.github.io/Fleet-Management-System/api/doctype-reference/)** - Complete technical documentation
-- **[Installation Guide](https://nelsonmpanju.github.io/Fleet-Management-System/installation/)** - Detailed setup instructions
+Visit **[https://iota.co.tz/docs/](https://iota.co.tz/docs/)** for complete documentation including:
+
+- **Complete Workflow Guide** - End-to-end process documentation
+- **API Reference** - Complete technical documentation
+- **Installation Guide** - Detailed setup instructions
 
 ### **Core Operations**
-- **[Cargo Registration](https://nelsonmpanju.github.io/Fleet-Management-System/transactions/cargo-registration/)** - Customer service management
-- **[Manifest Management](https://nelsonmpanju.github.io/Fleet-Management-System/transactions/manifest-management/)** - Vehicle assignment workflow
-- **[Trip Management](https://nelsonmpanju.github.io/Fleet-Management-System/transactions/trip-management/)** - Transportation execution
-- **[Financial Workflows](https://nelsonmpanju.github.io/Fleet-Management-System/transactions/financial-workflows/)** - Fund and fuel management
+- **Cargo Registration** - Customer service management
+- **Manifest Management** - Vehicle assignment workflow
+- **Trip Management** - Transportation execution
+- **Financial Workflows** - Fund and fuel management
 
 ### **Technical Reference**
-- **[API Reference](https://nelsonmpanju.github.io/Fleet-Management-System/api/doctype-reference/)** - Complete doctype specifications
-- **[Setup Guides](https://nelsonmpanju.github.io/Fleet-Management-System/setup/)** - Master data and system configuration
+- **API Reference** - Complete doctype specifications
+- **Setup Guides** - Master data and system configuration
+
+All guides and references are available at: **[https://iota.co.tz/docs/](https://iota.co.tz/docs/)**
 
 ---
 
@@ -202,13 +216,14 @@ We welcome contributions from the community! Whether you're a developer, busines
 4. **Test** thoroughly on a development environment
 5. **Submit** a pull request with detailed description
 
-For detailed contribution guidelines, see our **[Contributing Guide](https://nelsonmpanju.github.io/Fleet-Management-System/contributing/)**.
+For detailed contribution guidelines, see our **[Contributing Guide](https://iota.co.tz/docs/)**.
 
 ---
 
 ## 📞 Support & Community
 
 ### **Documentation**
+- **[Complete Documentation](https://iota.co.tz/docs/)** - User guides and technical references
 - **User Guides** - Step-by-step instructions for all features
 - **API Reference** - Complete technical documentation
 - **Video Tutorials** - Visual learning resources
@@ -249,7 +264,9 @@ This project is licensed under the **GNU General Public License v3.0** - see the
 
 **Ready to transform your fleet operations?**
 
-[🚀 Get Started](https://nelsonmpanju.github.io/Fleet-Management-System/user-guide/complete-workflow/) • [📖 Documentation](https://nelsonmpanju.github.io/Fleet-Management-System/) • [🤝 Contribute](https://github.com/nelsonmpanju/Fleet-Management-System)
+[🚀 Get Started](https://iota.co.tz/docs/) • [📖 Documentation](https://iota.co.tz/docs/) • [🤝 Contribute](https://github.com/nelsonmpanju/Fleet-Management-System)
+
+**Complete documentation available at [iota.co.tz/docs](https://iota.co.tz/docs/)**
 
 **Forked from [VVSD-LTD/vsd_fleet_ms](https://github.com/VVSD-LTD/vsd_fleet_ms) with enhanced documentation and features**
 
