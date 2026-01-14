@@ -18,6 +18,7 @@
   "column_break_yjxzq",
   "cargo_route",
   "net_weight",
+  "net_weight_tonne",
   "gross_weight",
   "tare_weight",
   "number_of_packages",
@@ -27,6 +28,8 @@
   "currency",
   "column_break_aqtqk",
   "rate",
+  "allow_bill_on_weight",
+  "bill_uom",
   "section_break_srbto",
   "cargo_location_country",
   "cargo_location_city",
@@ -95,6 +98,12 @@
    "fieldtype": "Float",
    "label": "Net Weight (kg)",
    "reqd": 1
+  },
+  {
+   "fieldname": "net_weight_tonne",
+   "fieldtype": "Float",
+   "label": "Net Weight (Tonne)",
+   "precision": 3
   },
   {
    "fieldname": "gross_weight",
@@ -283,6 +292,19 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "0",
+   "fieldname": "allow_bill_on_weight",
+   "fieldtype": "Check",
+   "label": "Allow Bill on Weight"
+  },
+  {
+   "depends_on": "eval:doc.allow_bill_on_weight == 1",
+   "fieldname": "bill_uom",
+   "fieldtype": "Link",
+   "label": "Bill UOM",
+   "options": "UOM"
+  },
+  {
    "fieldname": "invoice",
    "fieldtype": "Link",
    "label": "Sales Invoice",
@@ -324,7 +346,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-08-01 12:25:46.066847",
+ "modified": "2026-01-14 12:00:00.000000",
  "modified_by": "Administrator",
  "module": "VSD Fleet MS",
  "name": "Cargo Detail",
