@@ -109,7 +109,7 @@
    "fieldname": "units",
    "fieldtype": "Link",
    "label": "Units",
-   "options": "Unit of Measure"
+   "options": "UOM"
   },
   {
    "fieldname": "transport_details_section",
