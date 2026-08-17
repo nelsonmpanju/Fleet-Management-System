@@ -37,6 +37,7 @@
   "amount",
   "unit",
   "cargo",
+  "assign_transport",
   "html1",
   "total_assigned",
   "create_invoice",
@@ -210,13 +211,19 @@
    "fieldtype": "Link",
    "hidden": 1,
    "label": "Unit",
-   "options": "Unit of Measure"
+   "options": "UOM"
   },
   {
    "fieldname": "cargo",
    "fieldtype": "Table",
    "label": "Cargo",
    "options": "Cargo Detail"
+  },
+  {
+   "fieldname": "assign_transport",
+   "fieldtype": "Table",
+   "label": "Assign Transport",
+   "options": "Transport Assignments"
   },
   {
    "fieldname": "html1",
